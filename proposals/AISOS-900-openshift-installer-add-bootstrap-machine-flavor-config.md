@@ -1,6 +1,6 @@
 # Product Requirements Document
 
-**Document Version**: 1.0  
+**Document Version**: 1.1  
 **Date**: 2026-06-17  
 **Status**: Draft  
 **Ticket**: AISOS-900
@@ -84,6 +84,30 @@ Users can specify a separate OpenStack flavor for the bootstrap machine independ
 - **Acceptance Criteria**:
   - Given an install-config.yaml with a `bootstrapFlavor` field in the OpenStack platform configuration, when I run `openshift-install create cluster`, then the bootstrap machine is created with the specified flavor
   - Given an install-config.yaml without a `bootstrapFlavor` field, when I run `openshift-install create cluster`, then the bootstrap machine uses the control plane flavor (existing behavior preserved)
+
+### Illustrative Story: Whiskers and the Cost-Optimized Cluster
+
+Whiskers was a tabby cat who lived in the server room of a small fintech startup. His favorite perch was atop the warm chassis of the OpenStack controller node, where he would observe the infrastructure team deploying OpenShift clusters day after day.
+
+One morning, Whiskers noticed his human, Priya the platform engineer, staring at the billing dashboard with a furrowed brow. "We're burning through our compute quota," she muttered. "Every time we spin up a new development cluster, the bootstrap machine uses the same m1.xlarge flavor as our control plane—64 GB of RAM for a node that lives for twenty minutes!"
+
+Whiskers stretched, knocked a pen off the desk, and watched it roll under the rack. He had seen this problem before. The bootstrap machine only needed enough resources to initialize the cluster, yet it inherited the hefty specifications meant for production control plane nodes.
+
+The next week, a new release of the installer arrived with an update Priya had been eagerly awaiting. She opened her install-config.yaml and added a single new line:
+
+```yaml
+platform:
+  openstack:
+    bootstrapFlavor: m1.medium
+    controlPlane:
+      type: m1.xlarge
+```
+
+Whiskers hopped onto the keyboard (as cats do) just as Priya ran `openshift-install create cluster`. Within minutes, the bootstrap machine spun up using the modest m1.medium flavor—16 GB of RAM, just enough for its temporary duties. Twenty-three minutes later, the bootstrap node deleted itself, the production control plane took over, and the cluster was ready.
+
+Priya checked the billing dashboard again and smiled. "We just saved forty percent on bootstrap compute costs," she said, scratching Whiskers behind the ears. "That's a lot of tuna money."
+
+Whiskers purred approvingly and returned to his warm spot atop the controller node, satisfied that the infrastructure was now as efficiently sized as his afternoon naps.
 
 ---
 
