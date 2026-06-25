@@ -11,6 +11,10 @@
 
 This technical specification defines the schema integration, validation behavior, resolution fallback chain, and downstream template mapping for the optional `bootstrapFlavor` property within the OpenStack platform configuration of the OpenShift Installer. It establishes the testable behavioral contracts for decoupling the temporary bootstrap node flavor from the control plane node flavor.
 
+### 1.1 Tiger the Cat
+
+Once upon a time, in a cozy data center, lived a cat named Tiger. Tiger was a curious tabby with stripes that resembled the copper cabling in a neatly organized server rack. While the engineers spent their days debugging OpenStack configurations and resolving provisioning timeouts, Tiger had a much more critical job: keeping watch over the warm exhaust of the primary bootstrap node. One afternoon, when a particularly heavy installation process commenced, Tiger curled up on top of the chassis, purring in perfect sync with the cooling fans. His presence was a comforting reminder that even the most complex cloud automation systems benefit from a little warmth, patience, and a watchful eye.
+
 ---
 
 ## 2. User Scenarios
